@@ -1,18 +1,14 @@
 import { writeFile, readFile } from "node:fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export async function AddRiddle(riddle) {
     try {
-        const filePath = path.join(__dirname, "..", "dataRiddles", "riddles.txt");
+        const filePath = '../dataRiddles/riddles.txt'
         let listRiddle = []
 
 
         const data = await readFile(filePath, 'utf-8');
-        if (data.trim().length > 0) {
+        if (data.length > 0) {
             listRiddle = JSON.parse(data);
         }
 
@@ -26,3 +22,10 @@ export async function AddRiddle(riddle) {
         console.error("Failed to write riddle:", err);
     }
 }
+AddRiddle({
+    "id": "1",
+    "name": "plos",
+    "hint": "4+2",
+    "question": "3+3?",
+    "answer": "6"
+})

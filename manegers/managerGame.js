@@ -5,19 +5,19 @@ import { getSecondsForQuestion, getTimeForAllRidders } from '../time/time.js';
 import { readAllRiddles } from '../models/read.js';
 import { Riddles } from '../riddlesFlow/riddles.js';
 
-export async function ManagerGame() {
+export function ManagerGame() {
     console.log("Welcome to riddle Game");
     const namePlayer = readlineSync.question("What is your name: ");
 
     try {
-        const riddles = await readAllRiddles();
+        const riddles = readAllRiddles();
 
         if (riddles.length === 0) {
             console.log("No riddles found!");
             return;
         }
 
-        await Riddles(riddles);
+        Riddles(riddles);
 
         const allTime = getTimeForAllRidders();
         const averageTime = getSecondsForQuestion();

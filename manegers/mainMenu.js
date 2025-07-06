@@ -4,7 +4,7 @@ import { AddRiddle } from '../models/add.js'
 import { readAllRiddles } from '../models/read.js'
 import { NewRiddle } from '../newRiddle/newRiddle.js';
 
-export async function showMainMenu() {
+export function showMainMenu() {
     while (true) {
         console.log(`
 ==========================
@@ -23,7 +23,7 @@ export async function showMainMenu() {
             switch (choice) {
                 case '1':
                     console.log('🎮 Starting the game...');
-                    await ManagerGame()
+                    ManagerGame()
                     break;
 
                 case '2':
@@ -34,12 +34,12 @@ export async function showMainMenu() {
                     const question = readlineSync.question('Enter the question: ');
                     const answer = readlineSync.question('Enter the answer: ');
                     const newRiddle = NewRiddle(id, name, hint, question, answer)
-                    await AddRiddle(newRiddle)
+                    AddRiddle(newRiddle)
                     break;
 
                 case '3':
                     console.log('📜 Showing all riddles...');
-                    const riddles = await readAllRiddles();
+                    const riddles = readAllRiddles();
                     console.log("Riddles:", riddles);
                     break;
 
@@ -47,7 +47,7 @@ export async function showMainMenu() {
                     console.log('✏️ Updating riddle by ID...');
                     const riddleId = readlineSync.question('Enter riddle ID: ');
                     const newName = readlineSync.question('Enter new name: ');
-                    await UpdateRiddle(riddleId, newName);
+                    UpdateRiddle(riddleId, newName);
                     break;
 
                 case '5':
